@@ -1,4 +1,4 @@
-import getProjectedInfections from './helpers';
+import getProjectedInfections, { resolveToDays } from './helpers';
 
 const covid19ImpactEstimator = (data) => {
   const impact = {};
@@ -29,6 +29,27 @@ const covid19ImpactEstimator = (data) => {
     bedsAvailable - impact.severeCasesByRequestedTime;
   severeImpact.hospitalBedsByRequestedTime =
     bedsAvailable - severeImpact.severeCasesByRequestedTime;
+
+  impact.casesForICUByRequestedTime = 0.05 * impact.severeCasesByRequestedTime;
+  severeImpact.casesForICUByRequestedTime =
+    0.05 * severeImpact.severeCasesByRequestedTime;
+
+  impact.casesForVentilatorsByRequestedTime =
+    0.02 * impact.severeCasesByRequestedTime;
+  severeImpact.casesForVentilatorsByRequestedTime =
+    0.02 * severeImpact.severeCasesByRequestedTime;
+
+  impact.dollarsInFlight =
+    impact.infectionsByRequestedTime *
+    data.region.avgDailyIncomePopulation *
+    data.avgDailyIncomeInUSD *
+    resolveToDays(data.periodType, data.timeToElapse);
+
+  severeImpact.dollarsInFlight =
+    severeImpact.infectionsByRequestedTime *
+    data.region.avgDailyIncomePopulation *
+    data.avgDailyIncomeInUSD *
+    resolveToDays(data.periodType, data.timeToElapse);
 
   return {
     data: { ...data },

@@ -1,4 +1,4 @@
-function resolveToDays(dateFormat, duration) {
+export function resolveToDays(dateFormat, duration) {
   switch (dateFormat) {
     case 'months':
       return duration * 30;
