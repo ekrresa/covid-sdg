@@ -18,6 +18,7 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'no-param-reassign': ['error', { props: false }],
     'operator-linebreak': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+    'implicit-arrow-linebreak': 'off'
   }
 };
