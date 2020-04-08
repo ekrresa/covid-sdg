@@ -6,8 +6,8 @@
   "private": false,
   "scripts": {
     "lint": "eslint ./src/",
-    "build": "npx babel src -d dist",
-    "start": "yarn build && node dist/server.js"
+    "build": "babel src -d dist -s",
+    "start": "yarn run build && node dist/server.js"
   },
   "dependencies": {
     "compression": "^1.7.4",
