@@ -6,6 +6,8 @@ import compression from 'compression';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 
+import covidRouter from './routes';
+
 dotenv.config();
 const app = express();
 
@@ -30,6 +32,8 @@ app.use(helmet());
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use('/api/v1/on-covid-19', covidRouter);
 
 app.get('/', (_req, res) => res.json({ data: 'hello world' }));
 
