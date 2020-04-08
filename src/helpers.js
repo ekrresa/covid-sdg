@@ -29,6 +29,13 @@ export function writeToFile(data) {
   });
 }
 
+export function readFromFile() {
+  const filePath = path.join(__dirname, '../', 'logs.txt');
+  const readStream = fs.createReadStream(filePath, { flags: 'a+' });
+
+  return readStream;
+}
+
 export default function getProjectedInfections(
   duration,
   periodType,
