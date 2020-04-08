@@ -26,17 +26,11 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "husky": "^4.2.3",
     "jest": "^25.2.0"
   },
   "engines": {
     "node": "12.x",
     "yarn": "1.22.x"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": ": > logs.txt"
-    }
   },
   "browserslist": [
     "last 1 Chrome versions"
