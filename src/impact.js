@@ -14,22 +14,22 @@ export default function impactEstimator(inputData) {
   // Challenge 1 [END]
 
   // Challenge 2 [START]
-  output.severeCasesByRequestedTime = Math.floor(
+  output.severeCasesByRequestedTime = Math.trunc(
     0.15 * output.infectionsByRequestedTime
   );
 
-  const bedsAvailable = Math.floor(0.35 * inputData.totalHospitalBeds);
+  const bedsAvailable = Math.trunc(0.35 * inputData.totalHospitalBeds);
 
   output.hospitalBedsByRequestedTime =
     bedsAvailable - output.severeCasesByRequestedTime;
   // Challenge 2 [END]
 
   // Challenge 3 [START]
-  output.casesForICUByRequestedTime = Math.floor(
+  output.casesForICUByRequestedTime = Math.trunc(
     0.05 * output.infectionsByRequestedTime
   );
 
-  output.casesForVentilatorsByRequestedTime = Math.floor(
+  output.casesForVentilatorsByRequestedTime = Math.trunc(
     0.02 * output.infectionsByRequestedTime
   );
 
