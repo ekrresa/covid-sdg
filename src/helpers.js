@@ -42,7 +42,7 @@ export default function getProjectedInfections(
   currentlyInfected
 ) {
   const resolvedDuration = resolveToDays(periodType, duration);
-  const factor = Math.floor(resolvedDuration / 3);
+  const factor = Math.trunc(resolvedDuration / 3);
 
   return currentlyInfected * 2 ** factor;
 }
