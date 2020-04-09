@@ -18,10 +18,8 @@ export default function severeImpactEstimator(inputData) {
     0.15 * output.infectionsByRequestedTime
   );
 
-  const bedsAvailable = Math.trunc(0.35 * inputData.totalHospitalBeds);
-
   output.hospitalBedsByRequestedTime = Math.trunc(
-    bedsAvailable - output.severeCasesByRequestedTime
+    0.35 * inputData.totalHospitalBeds - output.severeCasesByRequestedTime
   );
   // Challenge 2 [END]
 
@@ -34,12 +32,14 @@ export default function severeImpactEstimator(inputData) {
     0.02 * output.infectionsByRequestedTime
   );
 
-  output.dollarsInFlight = (
-    output.infectionsByRequestedTime *
-    inputData.region.avgDailyIncomePopulation *
-    inputData.region.avgDailyIncomeInUSD *
-    resolveToDays(inputData.periodType, inputData.timeToElapse)
-  ).toFixed(2);
+  output.dollarsInFlight = parseFloat(
+    (
+      output.infectionsByRequestedTime *
+      inputData.region.avgDailyIncomePopulation *
+      inputData.region.avgDailyIncomeInUSD *
+      resolveToDays(inputData.periodType, inputData.timeToElapse)
+    ).toFixed(2)
+  );
   // Challenge 3 [END]
 
   return output;
