@@ -18,11 +18,10 @@ export default function impactEstimator(inputData) {
     0.15 * output.infectionsByRequestedTime
   );
 
-  const bedsAvailable = 0.35 * inputData.totalHospitalBeds;
+  const bedsAvailable = Math.floor(0.35 * inputData.totalHospitalBeds);
 
-  output.hospitalBedsByRequestedTime = Math.floor(
-    bedsAvailable - output.severeCasesByRequestedTime
-  );
+  output.hospitalBedsByRequestedTime =
+    bedsAvailable - output.severeCasesByRequestedTime;
   // Challenge 2 [END]
 
   // Challenge 3 [START]
