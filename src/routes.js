@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import xml2js from 'xml2js';
+import convert from 'xml-js';
 import covid19ImpactEstimator from './estimator';
 import { readFromFile } from './helpers';
 
@@ -9,13 +9,14 @@ router.post('/xml', (req, res) => {
   const inputData = req.body;
   const result = covid19ImpactEstimator(inputData);
 
-  const builder = new xml2js.Builder({
-    renderOpts: { pretty: true }
+  const xmlObj = convert.js2xml(result, {
+    compact: true,
+    ignoreComment: true,
+    spaces: 2
   });
 
-  const xmlString = builder.buildObject(result);
   res.set(('Content-Type', 'text/xml'));
-  res.status(200).send(xmlString);
+  res.status(200).send(xmlObj);
 });
 
 router.post('/json', (req, res) => {
