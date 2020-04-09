@@ -20,8 +20,9 @@ export default function impactEstimator(inputData) {
 
   const bedsAvailable = Math.trunc(0.35 * inputData.totalHospitalBeds);
 
-  output.hospitalBedsByRequestedTime =
-    bedsAvailable - output.severeCasesByRequestedTime;
+  output.hospitalBedsByRequestedTime = Math.trunc(
+    bedsAvailable - output.severeCasesByRequestedTime
+  );
   // Challenge 2 [END]
 
   // Challenge 3 [START]
