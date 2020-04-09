@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
   res.on('finish', () => {
     const diff = getDurationInMilliseconds(start);
-    const log = `${req.method} ${req.originalUrl} ${res.statusCode} ${diff}ms\n`;
+    const log = `${req.method}\t\t${req.originalUrl}\t\t${res.statusCode}\t\t${diff}ms\n`;
     writeToFile(log);
   });
 
