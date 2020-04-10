@@ -15,8 +15,7 @@ router.post('/xml', (req, res) => {
     spaces: 4
   });
 
-  res.set(('Content-Type', 'text/xml'));
-  res.status(200).send(xml);
+  res.status(200).type('application/xml').send(xml);
 });
 
 router.post('/json', (req, res) => {
