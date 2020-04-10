@@ -1,15 +1,23 @@
 import { Router } from 'express';
+import convert from 'xml-js';
+
 import covid19ImpactEstimator from './estimator';
 import { readFromFile } from './helpers';
 
 const router = Router();
+router.post('/xml', (req, res) => {
+  const inputData = req.body;
+  const result = covid19ImpactEstimator(inputData);
 
-// router.post('/xml', (req, res) => {
-//   const inputData = req.body;
-//   const result = covid19ImpactEstimator(inputData);
+  const xml = convert.js2xml(result, {
+    compact: true,
+    ignoreComment: true,
+    spaces: 4
+  });
 
-//   res.set(('Content-Type', 'text/xml'));
-// });
+  res.set(('Content-Type', 'text/xml'));
+  res.status(200).send(xml);
+});
 
 router.post('/json', (req, res) => {
   const inputData = req.body;
