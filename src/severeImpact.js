@@ -32,13 +32,11 @@ export default function severeImpactEstimator(inputData) {
     0.02 * output.infectionsByRequestedTime
   );
 
-  output.dollarsInFlight = parseFloat(
-    (
-      output.infectionsByRequestedTime *
+  output.dollarsInFlight = Math.trunc(
+    (output.infectionsByRequestedTime *
       inputData.region.avgDailyIncomePopulation *
-      inputData.region.avgDailyIncomeInUSD *
+      inputData.region.avgDailyIncomeInUSD) /
       resolveToDays(inputData.periodType, inputData.timeToElapse)
-    ).toFixed(2)
   );
   // Challenge 3 [END]
 
