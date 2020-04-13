@@ -27,9 +27,7 @@ router.post('/json', (req, res) => {
 router.get('/logs', (req, res) => {
   const result = readFromFile();
 
-  result.on('data', (chunk) => {
-    res.status(200).send(chunk.toString());
-  });
+  res.status(200).type('text/plain').send(result);
 });
 
 router.post('/', (req, res) => {
