@@ -7,7 +7,6 @@ import dotenv from 'dotenv';
 
 import { getDurationInMilliseconds, writeToFile } from './helpers';
 import covidRouter from './routes';
-import validateBody from './validation';
 
 dotenv.config();
 const app = express();
@@ -31,7 +30,7 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/v1/on-covid-19', validateBody, covidRouter);
+app.use('/api/v1/on-covid-19', covidRouter);
 
 app.get('/', (_req, res) => res.json({ data: 'hello world' }));
 

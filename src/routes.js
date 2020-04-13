@@ -3,9 +3,10 @@ import convert from 'xml-js';
 
 import covid19ImpactEstimator from './estimator';
 import { readFromFile } from './helpers';
+import validateReqBody from './validation';
 
 const router = Router();
-router.post('/xml', (req, res) => {
+router.post('/xml', validateReqBody, (req, res) => {
   const inputData = req.body;
   const result = covid19ImpactEstimator(inputData);
 
@@ -18,7 +19,7 @@ router.post('/xml', (req, res) => {
   res.status(200).type('application/xml').send(xml);
 });
 
-router.post('/json', (req, res) => {
+router.post('/json', validateReqBody, (req, res) => {
   const inputData = req.body;
   const result = covid19ImpactEstimator(inputData);
   res.status(200).send(result);
@@ -30,7 +31,7 @@ router.get('/logs', (req, res) => {
   res.status(200).type('text/plain').send(result);
 });
 
-router.post('/', (req, res) => {
+router.post('/', validateReqBody, (req, res) => {
   const inputData = req.body;
   const result = covid19ImpactEstimator(inputData);
   res.status(200).send(result);
