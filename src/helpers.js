@@ -17,7 +17,12 @@ export function getDurationInMilliseconds(startTime) {
   const NANOSEC_TO_MILLSEC = 1e6;
   const diff = process.hrtime(startTime);
 
-  return (diff[0] * NANOSEC_PER_SEC + diff[1]) / NANOSEC_TO_MILLSEC;
+  const diffInMilliSecs =
+    (diff[0] * NANOSEC_PER_SEC + diff[1]) / NANOSEC_TO_MILLSEC;
+
+  const resolvedDiff = Math.floor(diffInMilliSecs).toString();
+
+  return resolvedDiff.length === 1 ? `0${resolvedDiff}` : resolvedDiff;
 }
 
 export function writeToFile(data) {
